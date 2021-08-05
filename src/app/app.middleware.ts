@@ -47,6 +47,10 @@ export const defaultErrorHandler = (
       statusCode = 400;
       message = '用户名不存在';
       break;
+    case 'PASSWORD_DOES_NOT_MATCH':
+    statusCode = 400;
+    message = '密码不对';
+    break;
     default:
       statusCode = 500;
       message = '服务暂时出了点问题 ～～ 🌲';
