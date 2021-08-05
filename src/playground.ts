@@ -1,8 +1,15 @@
-const nature = jian => {
-  const data = '🌲';
-  jian(data);
+const nature = () => {
+  console.log('...');
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('🦕');
+    }, 2000);
+  });
 };
 
-nature(data => {
+nature().then(data => {
   console.log(data);
 });
+
+console.log('🌋');
