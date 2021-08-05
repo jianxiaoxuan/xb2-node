@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, response } from 'express';
 import { getPosts } from './post.service';
 
 /**
@@ -9,7 +9,10 @@ export const index = async (
   response: Response,
   next: NextFunction
 ) => {
-  const posts = await getPosts();
-
-  response.send(posts);
+  try {
+    const posts = await getPosts();
+    response.send(posts);
+  } catch (error) {
+    next(error);
+  }
 };
