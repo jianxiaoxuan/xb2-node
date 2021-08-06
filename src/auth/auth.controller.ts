@@ -26,3 +26,14 @@ export const login = async (
     next(error);
   }
 };
+
+/**
+ * 验证登陆
+ */
+export const validate = (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  response.sendStatus(200);
+};
