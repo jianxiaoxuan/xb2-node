@@ -43,7 +43,7 @@ export const possess = async (options: PossessOptions) => {
   // 检查拥有权
   const [data] = await connection
     .promise()
-    .query(statement, {resourceId, userId});
+    .query(statement, [resourceId, userId]);
 
   // 提供检查结果
   return data[0].count ? true : false;
