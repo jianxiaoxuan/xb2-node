@@ -18,12 +18,32 @@ router.post('/posts', authGuard, postController.store);
 /**
  *  更新内容
  */
-router.patch('/posts/:postId', authGuard, accessControl({ possession: true }), postController.update);
+router.patch(
+  '/posts/:postId', 
+  authGuard, 
+  accessControl({ possession: true }), 
+  postController.update
+);
 
 /**
  *  删除内容
  */
-router.delete('/posts/:postId', authGuard, accessControl({ possession: true }), postController.destroy);
+router.delete(
+  '/posts/:postId', 
+  authGuard, 
+  accessControl({ possession: true }), 
+  postController.destroy
+);
+
+/**
+ * 添加内容标签
+ */
+router.post(
+  '/posts/:postId/tag', 
+  authGuard, 
+  accessControl({ possession: true }), 
+  postController.storePostTag
+);
 
 /**
  *  导出路由
