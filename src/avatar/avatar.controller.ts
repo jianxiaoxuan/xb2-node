@@ -3,6 +3,7 @@ import fs from 'fs';
 import { Request, Response, NextFunction } from 'express';
 import _ from 'lodash';
 import { createAvatar, findAvatarByUserId } from './avatar.service';
+import { avatarProcessor } from './avatar.middleware';
 
 /**
  * 上传头像
@@ -51,7 +52,7 @@ import { createAvatar, findAvatarByUserId } from './avatar.service';
     const avatar = await findAvatarByUserId(parseInt(userId, 10));
 
     if (!avatar) {
-      throw new Error('FILE_NOT_FOUND')
+      throw new Error('FILE_NOT_FOUND');
     }
 
     // 要提供的头像尺寸
@@ -73,9 +74,9 @@ import { createAvatar, findAvatarByUserId } from './avatar.service';
 
       // 检查文件是否存在
       const fileExist = fs.existsSync(
-        path.join(root, resized, `${filename}-${size}`),
+        path.join(root, resized, `${filename}-${size}`)
       );
-
+      console.log(path.join(root, resized, `${filename}-${size}`));
       if (!fileExist) {
         throw new Error('FILE_NOT_FOUND');
       }
@@ -90,9 +91,9 @@ import { createAvatar, findAvatarByUserId } from './avatar.service';
     response.sendFile(filename, {
       root,
       headers: {
-        'Content-Type': avatar.mimetype,
+        'Content-Type': avatar.mimetype
       }
-    })
+    });
   } catch (error) {
     next(error);
   }

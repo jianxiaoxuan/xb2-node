@@ -13,10 +13,7 @@ router.post('/avatar', authGuard, avatarInterceptor, avatarProcessor, avatarCont
 /**
  * 头像服务
  */
-router.get(
-  '/users/:userId/avater',
-  avatarController.serve,
-);
+router.get('/users/:userId/avatar', avatarController.serve);
 
 /**
  * 导出路由
