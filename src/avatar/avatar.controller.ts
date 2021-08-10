@@ -76,7 +76,7 @@ import { avatarProcessor } from './avatar.middleware';
       const fileExist = fs.existsSync(
         path.join(root, resized, `${filename}-${size}`)
       );
-      console.log(path.join(root, resized, `${filename}-${size}`));
+
       if (!fileExist) {
         throw new Error('FILE_NOT_FOUND');
       }
