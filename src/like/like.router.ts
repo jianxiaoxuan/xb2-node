@@ -7,7 +7,7 @@ const router = express.Router();
 /**
  * 点赞内容
  */
-router.post('/posts/:postId/lile', authGuard, likeController.storeUserLikePost);
+router.post('/posts/:postId/like', authGuard, likeController.storeUserLikePost);
 
 /**
  * 导出路由
