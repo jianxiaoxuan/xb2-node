@@ -1,4 +1,3 @@
-import { Connection } from "mysql2/typings/mysql";
 import { connection } from "../app/database/mysql";
 import { AvatarModel } from "./avatar.model";
 
@@ -10,7 +9,7 @@ import { AvatarModel } from "./avatar.model";
 ) => {
   // 准备查询
   const statement = `
-    INSERT INOT avatar
+    INSERT INTO avatar
     SET ?
   `;
 
