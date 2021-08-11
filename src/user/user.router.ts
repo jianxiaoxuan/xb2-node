@@ -12,7 +12,7 @@ router.post('/users', validateUserData, hashPassword, userController.store);
 /**
  * 用户账户
  */
-router.get('/users/:/userId', userController.show);
+router.get('/users/:userId', userController.show);
 
 /**
  *  导出路由
