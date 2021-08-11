@@ -12,7 +12,7 @@ export const sqlFragment = {
     JSON_OBJECT(
       'id', user.id,
       'name', user.name,
-      'avatar', IF(COUNT(avatar, 1, NULL))
+      'avatar', IF(COUNT(avatar.id), 1, NULL)
     ) as user
   `,
   leftJoinPost: `
@@ -24,5 +24,5 @@ export const sqlFragment = {
       'id', post.id,
       'title', post.title
     ) as post
-  `,
+  `
 }
