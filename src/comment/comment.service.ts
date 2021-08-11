@@ -111,6 +111,7 @@ interface GetCommentOptions {
       comment.content,
       ${sqlFragment.user},
       ${sqlFragment.post}
+      ${filter.name == 'userReplied' ? `, ${sqlFragment.repliedComment}` : ''}
     FROM
       comment
     ${sqlFragment.leftJoinUser}
