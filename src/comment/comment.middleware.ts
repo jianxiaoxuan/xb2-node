@@ -35,6 +35,15 @@ import { Request, Response, NextFunction, response } from 'express';
     };
   }
 
+  // 用户的回复
+  if (user && action == 'replied' && !post) {
+    request.filter = {
+      name: 'userReplied',
+      sql: 'comment.parentId IS NOT NULL AND comment.userId = ?',
+      param: `${user}`
+    };
+  }
+
   // 下一步
   next();
 };
