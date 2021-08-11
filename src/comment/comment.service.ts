@@ -112,6 +112,7 @@ interface GetCommentOptions {
       ${sqlFragment.user},
       ${sqlFragment.post}
       ${filter.name == 'userReplied' ? `, ${sqlFragment.repliedComment}` : ''}
+      ${filter.name !== 'userReplied' ? `, ${sqlFragment.totalReplies}` : ''}
     FROM
       comment
     ${sqlFragment.leftJoinUser}
