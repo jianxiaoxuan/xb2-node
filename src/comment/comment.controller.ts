@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction, response } from 'express';
 import { filter } from '../post/post.middleware';
-import { createComment, isReplyComment, updateComment, deleteComment, getComments, getCommentsTotalCount } from './comment.service';
+import { createComment, isReplyComment, updateComment, deleteComment, getComments, getCommentsTotalCount, getCommentReplies } from './comment.service';
 
 /**
  * 发表评论
@@ -144,6 +144,30 @@ import { createComment, isReplyComment, updateComment, deleteComment, getComment
 
     // 做出响应
     response.send(comments);
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * 回复列表
+ */
+ export const indexReplies = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  // 准备数据
+  const {commentId} = request.params;
+
+  // 获取评论回复列表
+  try {
+    const replies = await getCommentReplies({
+      commentId: parseInt(commentId, 10)
+    });
+
+    // 做出响应
+    response.send(replies);
   } catch (error) {
     next(error);
   }
