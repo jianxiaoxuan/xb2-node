@@ -57,8 +57,8 @@ export const store = async (
   next: NextFunction
 ) => {
   // 准备数据
-  const {id} = request.user;
-  const userData = _.pick(request.body.updata, ['name', 'password']);
+  const { id } = request.user;
+  const userData = _.pick(request.body.update, ['name', 'password']);
 
   // 更新用户
   try {

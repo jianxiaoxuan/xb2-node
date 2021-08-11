@@ -69,23 +69,20 @@ export const getUserByName = getUser('user.name');
  /**
   * 更新用户
   */
-  export const updateUser = async (
-   userId: number,
-   userData: UserModel
- ) => {
-   // 准备查询
-   const statement = `
-    UPDATE user
-    SET ?
-    WHERE user.id = ?
-   `;
-
-   // SQL 参数
-   const params = [userData, userId];
-
-   // 执行查询
-   const [data] = await connection.promise().query(statement, params);
-
-   // 提供数据
-   return data;
- };
+  export const updateUser = async (userId: number, userData: UserModel) => {
+    // 准备查询
+    const statement = `
+      UPDATE user
+      SET ?
+      WHERE user.id = ?
+    `;
+  
+    // SQL 参数
+    const params = [userData, userId];
+  
+    // 执行查询
+    const [data] = await connection.promise().query(statement, params);
+  
+    // 提供数据
+    return data;
+  };

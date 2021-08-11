@@ -52,22 +52,22 @@ export const hashPassword = async (
  export const validateUpdateUserData = async (
   request: Request,
   response: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   // 准备数据
-  const {validate, update} = request.body;
+  const { validate, update } = request.body;
 
   // 当前用户
-  const {id: userId} = request.user;
+  const { id: userId } = request.user;
 
   try {
     // 检查用户是否提供了当前密码
     if (!_.has(validate, 'password')) {
-      return next(new Error('PASSWOED_IS_REQUIRED'));
+      return next(new Error('PASSWORD_IS_REQUIRED'));
     }
 
     // 调取用户数据
-    const user = await userService.getUserById(userId, {password: true});
+    const user = await userService.getUserById(userId, { password: true });
 
     // 验证用户密码是否匹配
     const matched = await bcrypt.compare(validate.password, user.password);
