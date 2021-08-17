@@ -29,13 +29,15 @@ export const index = async (
     // 设置响应头部
     response.header('X-Total-Count', totalCount)
   } catch (error) {
-    
+    next(error);
   }
+
   try {
     const posts = await getPosts({ 
       sort: request.sort, 
       filter: request.filter,
       pagination: request.pagination,
+      currentUser: request.user,
     });
     response.send(posts);
   } catch (error) {
